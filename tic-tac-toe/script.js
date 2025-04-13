@@ -22,6 +22,18 @@ function makeMove(index) {
     }
 }
 
+function showPopup(message) {
+    const popup = document.getElementById('popup');
+    const popupMessage = document.getElementById('popup-message');
+    popupMessage.textContent = message;
+    popup.classList.remove('hidden');
+}
+
+function closePopup() {
+    const popup = document.getElementById('popup');
+    popup.classList.add('hidden');
+}
+
 function checkWinner() {
     const winningCombinations = [
         [0, 1, 2], [3, 4, 5], [6, 7, 8],
@@ -31,13 +43,13 @@ function checkWinner() {
     for (const combination of winningCombinations) {
         const [a, b, c] = combination;
         if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-            alert(`${board[a]} wins!`);
+            showPopup(`${board[a]} wins!`);
             resetGame();
             return;
         }
     }
     if (!board.includes(null)) {
-        alert('It\'s a draw!');
+        showPopup('It\'s a draw!');
         resetGame();
     }
 }

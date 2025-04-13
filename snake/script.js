@@ -88,7 +88,9 @@ function drawGame() {
 }
 
 document.addEventListener('keydown', event => {
-    if (!game) {
+    const popupVisible = !document.getElementById('popup').classList.contains('hidden');
+
+    if (!game || popupVisible) {
         closePopup();
         startGame();
     }
