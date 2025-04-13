@@ -28,15 +28,25 @@
             padding: 10px 20px;
             font-size: 16px;
         }
+        .dark-mode {
+            background-color: #121212;
+            color: #ffffff;
+        }
     </style>
 </head>
 <body>
     <h1>Simple Browser Games</h1>
-    <div>
-        <a href="./click-counter/index.html">Game 1: Click Counter</a>
-        <a href="./guess-the-number/index.html">Game 2: Guess the Number</a>
-        <a href="./reaction-timer/index.html">Game 3: Reaction Timer</a>
-    </div>
+    <nav>
+        <a href="./click-counter/index.html">Click Counter</a> |
+        <a href="./guess-the-number/index.html">Guess the Number</a> |
+        <a href="./reaction-timer/index.html">Reaction Timer</a> |
+        <a href="./tic-tac-toe/index.html">Tic-Tac-Toe</a> |
+        <a href="./rock-paper-scissors/index.html">Rock-Paper-Scissors</a> |
+        <a href="./snake/index.html">Snake</a>
+        <button id="dark-mode-toggle" onclick="toggleDarkMode()" style="float: right; background: none; border: none; cursor: pointer;">
+            <img src="dark-mode-icon.png" alt="Toggle Dark Mode" style="width: 24px; height: 24px;">
+        </button>
+    </nav>
     <div id="game-container">
         <div id="game1" class="hidden">
             <h2>Click Counter</h2>
@@ -108,6 +118,20 @@
                 startTime = Date.now();
             }, delay);
         }
+
+        function toggleDarkMode() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+            const isDarkMode = body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDarkMode);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const isDarkMode = localStorage.getItem('darkMode') === 'true';
+            if (isDarkMode) {
+                document.body.classList.add('dark-mode');
+            }
+        });
     </script>
 </body>
 </html>

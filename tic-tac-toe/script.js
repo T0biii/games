@@ -3,6 +3,7 @@ let currentPlayer = 'X';
 
 function renderBoard() {
     const gameBoard = document.getElementById('game-board');
+    const currentPlayerDisplay = document.getElementById('current-player');
     gameBoard.innerHTML = '';
     board.forEach((cell, index) => {
         const cellElement = document.createElement('div');
@@ -11,6 +12,7 @@ function renderBoard() {
         cellElement.onclick = () => makeMove(index);
         gameBoard.appendChild(cellElement);
     });
+    currentPlayerDisplay.textContent = `Current Player: ${currentPlayer}`;
 }
 
 function makeMove(index) {
